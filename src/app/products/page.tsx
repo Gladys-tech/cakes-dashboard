@@ -1,4 +1,5 @@
-import ProductPage from "@/pages/ProductPage";
+
+import ProductPage from "@/pages/ProductsPage";
 import React from "react";
 
 const Products=()=>{

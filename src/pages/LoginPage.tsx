@@ -59,7 +59,7 @@ const LoginPage = () => {
             setSuccessMessage('login successful! Redirecting to home page...');
             setTimeout(() => {
                 window.location.href = '/';
-            }, 8000);
+            }, 2000);
 
             console.log('logged in :', user);
             localStorage.setItem('user', JSON.stringify(user));

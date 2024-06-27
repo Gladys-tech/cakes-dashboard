@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from 'react';
-import { CircularProgress, Typography, Card, CardContent, CardActions, Button, Grid, Container } from '@mui/material';
+import { CircularProgress, Typography, Card, CardContent, CardActions, Button, Grid, Container, CardMedia } from '@mui/material';
 import { useUser } from '@/context/UserContext';
 import Link from 'next/link';
 
@@ -102,6 +102,28 @@ const ProductPage = () => {
                     {products.map((product) => (
                         <Grid item key={product.id} xs={12} sm={6} md={4}>
                             <Card>
+                                {product.primaryImageUrl ? (
+                                    <CardMedia
+                                        component="img"
+                                        height="215"
+                                        image={product.primaryImageUrl}
+                                        alt={product.name}
+                                    />
+                                ) : (
+                                    <div
+                                        style={{
+                                            height: '215px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            backgroundColor: '#f0f0f0',
+                                            color: '#aaa',
+                                            fontStyle: 'italic'
+                                        }}
+                                    >
+                                        No image available
+                                    </div>
+                                )}
                                 <CardContent>
                                     <Typography variant="h6" component="div" gutterBottom>
                                         {product.name}

@@ -91,7 +91,7 @@ const SignupPage = () => {
                 setSuccessMessage('Registration successful! Redirecting to login page...');
                 setTimeout(() => {
                     window.location.href = '/login';
-                }, 8000);
+                }, 2000);
             } else {
                 const errorText = await response.text();
                 console.error('Unexpected content type:', contentType, 'Response text:', errorText);

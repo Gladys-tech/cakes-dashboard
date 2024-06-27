@@ -24,6 +24,12 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                 <Link href="/" onClick={handleLogoClick} className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
                     logo
                 </Link>
+                <Link href="/create-shop" onClick={handleLogoClick} className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                    Create Shop
+                </Link>
+                <Link href="/shops" onClick={handleLogoClick} className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                    Shops
+                </Link>
                 <Link href="/create-product" onClick={handleLogoClick} className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
                     Create Product
                 </Link>
