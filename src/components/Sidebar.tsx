@@ -39,12 +39,13 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                 <Link href="/orders" onClick={handleLogoClick} className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
                     Orders
                 </Link>
-                <Link href="/users" onClick={handleLogoClick} className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+                
+                {/* <Link href="/users" onClick={handleLogoClick} className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
                     Users
                 </Link>
                 <Link href="/customers" onClick={handleLogoClick} className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
                     Customers
-                </Link>
+                </Link> */}
             </nav>
             <button onClick={toggleSidebar} className="md:hidden text-black absolute top-5 right-5 focus:outline-none">
                 <svg className="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
