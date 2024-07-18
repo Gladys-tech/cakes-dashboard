@@ -14,7 +14,6 @@ import { useUser } from '@/context/UserContext'
 
 
 interface Column {
-    // id: 'orderValue' | 'quantity' | 'client' | 'expectedDeliveryDate' | 'status'
     id: 'orderValue' | 'quantity' | 'client' | 'expectedDeliveryDate' | 'status' | 'email' | 'telphone' | 'location';
     label: string
     minWidth?: number
@@ -114,7 +113,7 @@ const OrdersPage = () => {
 
             const response = await fetch(`http://localhost:8000/users/${user.id}`, {
                 headers: {
-                    // 'Authorization': `Bearer ${token}`,
+                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 },
             });
@@ -132,7 +131,7 @@ const OrdersPage = () => {
                 const responseShop = await fetch(`http://localhost:8000/shops/${shop.id}`, {
                     method: 'GET',
                     headers: {
-                        // 'Authorization': `Bearer ${token}`,
+                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
                     },
                 });
