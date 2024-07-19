@@ -134,8 +134,13 @@ const ProductPage = () => {
                                     <Typography variant="body1" component="div" gutterBottom>
                                         Price: {product.price}
                                     </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="div">
-                                        Inventory Quantity: {product.inventoryQuantity}
+                                    <Typography variant="body2" component="div">
+                                        Inventory Quantity: 
+                                        {product.inventoryQuantity <= 1 ? (
+                                            <span style={{ color: 'red' }}>Out of Stock</span>
+                                        ) : (
+                                            product.inventoryQuantity
+                                        )}
                                     </Typography>
                                 </CardContent>
                                 <CardActions>

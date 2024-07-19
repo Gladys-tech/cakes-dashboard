@@ -21,6 +21,9 @@ const Dashboard = () => {
   const [totalOrders, setTotalOrders] = useState(0);
   const [totalEarnings, setTotalEarnings] = useState(0.0);
   const [totalProducts, setTotalProducts] = useState(0);
+  const [visitorsToday, setVisitorsToday] = useState(0);
+  const [totalVisitors, setTotalVisitors] = useState(0);
+
   const { user } = useUser();
 
   const fetchTotalOrdersEarningsAndProducts = async () => {
@@ -107,8 +110,8 @@ const Dashboard = () => {
             //     console.warn(`Order value is not a number for order:`, order);
             //   }
             // });
-             // total earnings from delivered orders.
-             orders.forEach((order: { status: string, orderValue: number }) => {
+            // total earnings from delivered orders.
+            orders.forEach((order: { status: string, orderValue: number }) => {
               if (order.status === 'delivered' && typeof order.orderValue === 'number') {
                 earnings += order.orderValue;
               } else {
@@ -126,6 +129,51 @@ const Dashboard = () => {
       console.error('Error fetching total orders, earnings, and products:', error);
     }
   };
+
+
+  const fetchVisitors = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('Token not found');
+      }
+
+      const response = await fetch('http://localhost:8000/visitors', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch visitors data: ${response.status} ${response.statusText}`);
+      }
+
+      const visitorsData = await response.json();
+      console.log('Visitors data fetched:', visitorsData);
+
+      if (visitorsData.status === 'OK') {
+        const visitors = visitorsData.visitors;
+        const today = new Date().toISOString().split('T')[0];
+
+        const visitorsCountToday = visitors.filter((visitor: { visitTime: string }) => {
+          return visitor.visitTime.split('T')[0] === today;
+        }).length;
+
+        setVisitorsToday(visitorsCountToday);
+        setTotalVisitors(visitors.length);
+      }
+    } catch (error) {
+      console.error('Error fetching visitors data:', error);
+    }
+  };
+
+  
+  useEffect(() => {
+    fetchVisitors();
+  }, []);
+
+
 
   useEffect(() => {
     if (user) {
@@ -170,12 +218,13 @@ const Dashboard = () => {
             <Grid item xs={12} sm={6}>
               <StatsCard
                 title="Visitors Today"
-                value="32,104"
-                change="+0.94% today"
+                value={`${visitorsToday}/${totalVisitors}`}
+                change={`Today's visitors out of total`}
                 icon={<PeopleIcon />}
                 color="lightblue"
               />
             </Grid>
+
           </Grid>
 
           {/* Chart */}
